@@ -1,0 +1,17 @@
+---
+title: Powered By Moran
+description: 
+collaborators: one, two, three
+---
+
+    <div class="wrapper">
+      <div class="grid">
+        {% for image in site.static_files %}
+          {% if image.path contains 'moran' %}
+          <div class="item">
+           <img src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+          </div>
+          {% endif %}
+        {% endfor %}    
+      </div>
+    </div>

@@ -1,0 +1,15 @@
+---
+layout: default
+title: Archive
+permalink: /archive/
+---
+
+    <div class="wrapper">
+
+{% for project in site.projects %}
+        <div class="archive-list">
+        <a href="{{ project.url }}" alt="{{ project.title }}">{{ project.title }}</a>
+        </div>
+{% endfor %}
+    
+    </div>
