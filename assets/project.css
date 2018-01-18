@@ -1,0 +1,129 @@
+/* Projects */
+
+.project-title {
+    font-size: 36px;
+}
+
+.project-grid {
+    padding: 30px 0;
+}
+
+/* Project Text */
+
+.project-description {
+    padding: 30px 0;
+    width: 60%;
+    display: inline-block;
+    float: left;
+}
+
+.project-description p {
+    margin-right: 60px;
+}
+
+.project-info {
+    padding: 30px 0;
+    font-size: 14px;
+    width: 40%;
+    display: inline-block;
+    float: left;
+}
+
+.project-details {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.detail {
+    -webkit-margin-after: 20px;
+    -webkit-margin-end: 20px;
+}
+
+.project-collaborators {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+/* Project Grid */
+
+.grid {
+    -moz-column-gap: 1.5em;
+    -webkit-column-gap: 1.5em;
+    column-gap: 1.5em;
+    font-size: .85em;
+}
+
+.item {
+    display: inline-block;
+    background: #fff;
+    margin: 0 0 1.5em;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  width: auto;
+}
+
+/* Projects-Mobile */
+
+@media only screen and (max-width: 640px) {
+    .project-description {
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .project-info {
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .project-description p {
+    margin-right: 0px;
+    }
+}
+
+
+@media only screen and (min-width: 640px) {
+    .grid {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .grid {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .grid {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .grid {
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .grid {
+        width: 100%;
+    }
+}

@@ -1,85 +1,72 @@
-p, ul, li {
+/* Universal */
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    margin: 0;
+    font-size: 16px;
+}
+
+p, h1, h2, h3, ul, li {
     display: block;
-    font-size: 14px;
-    line-height: 1.4em;
+    line-height: 1.5em;
+    list-style-type: none;
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
-}
-
-.project-text {
-    display: inline-block;
-    width: 100%;
-}
-
-.project-text:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-.project-description {
-    padding: 30px 0;
-    width: 50%;
-    display: inline-block;
-    float: left;
-}
-
-.project-description p {
-    margin-right: 60px;
-}
-
-.project-info {
-    padding: 30px 0;
-    font-size: 14px;
-    width: 50%;
-    display: inline-block;
-    float: left;
-}
-
-.project-details {
-    width: 50%;
-    display: inline-block;
-    float: left;
-}
-
-.detail {
-    -webkit-margin-after: 20px;
-    -webkit-margin-end: 20px;
-}
-
-.project-collaborators {
-    width: 50%;
-    display: inline-block;
-    float: left;
-}
-
-@media only screen and (max-width: 640px) {
-    .project-description {
-        width: 100%;
-        display: inline-block;
-    }
-    
-    .project-info {
-        width: 100%;
-        display: inline-block;
-    }
-    
-    .project-description p {
-    margin-right: 0px;
-}
-}
-
-
-ul, li {
-    list-style-type: none;
     -webkit-padding-start: 0px;
 }
 
+h2 {
+    font-size: 1.75em;
+    line-height: 1.5em;
+    font-weight: 400;
+}
 
-body {
-    font-family: helvetica;
+.content {
+    margin: 0 30px;
+    display: block;
+    background-color: white;
+}
+
+.footer {
+    background-color: whitesmoke;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: block;
+    font-size: .8em;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    padding: 30px;
+    margin: auto;
+}
+
+.footer-inner .left {
+    display: inline-block;
+    width: 50%;
+}
+
+.footer-inner .right {
+    display: inline-block;
+    width: 50%;
+    float: right;
+    text-align: right;
+}
+
+.text-area {
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px 0;
+    margin: auto;
+}
+
+.text-area:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 a {
@@ -91,12 +78,19 @@ a:hover {
     color: blue;
 }
 
+/* Navigation */
+
 .navigation {
-    display: inline-block;
-    box-sizing: border-box;
-    min-width: 100%;
+    margin: 0 30px;
+    display: block;
     font-size: 20px;
-    padding: 20px;
+}
+
+.navigation-inner {
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px 0;
+    margin: auto;
 }
 
 .navigation .logo {
@@ -118,81 +112,14 @@ a:hover {
 }
 
 
-.content {
-    display: block;
-    padding: 0 20px;
-    margin-top: 20px;
-}
+/* Archive */
 
 .archive-list {
-    font-size: 36px;
-    margin-bottom: 10px;
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 0;
 }
 
-.wrapper {
-    width: 100%;
-    margin: 3em auto;
-}
-
-.grid {
-    margin: 1.5em 0;
-    padding: 0;
-    -moz-column-gap: 1.5em;
-    -webkit-column-gap: 1.5em;
-    column-gap: 1.5em;
-    font-size: .85em;
-}
-
-.item {
-    display: inline-block;
-    background: #fff;
-    margin: 0 0 1.5em;
-    width: 100%;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-
-img {
-  height: auto;
-  max-width: 100%;
-  width: auto;
-}
-
-@media only screen and (min-width: 640px) {
-    .grid {
-        -moz-column-count: 1;
-        -webkit-column-count: 1;
-        column-count: 1;
-    }
-}
-
-@media only screen and (min-width: 700px) {
-    .grid {
-        -moz-column-count: 2;
-        -webkit-column-count: 2;
-        column-count: 2;
-    }
-}
-
-@media only screen and (min-width: 900px) {
-    .grid {
-        -moz-column-count: 3;
-        -webkit-column-count: 3;
-        column-count: 3;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .grid {
-        -moz-column-count: 4;
-        -webkit-column-count: 4;
-        column-count: 4;
-    }
-}
-
-@media only screen and (min-width: 1280px) {
-    .grid {
-        width: 100%;
-    }
+.archive-list a {
+    display: block;
 }

@@ -2,15 +2,13 @@
 layout: default
 title: Archive
 permalink: /archive/
-order: 2
 ---
 
-    <div class="wrapper">
-
-{% for project in site.projects %}
         <div class="archive-list">
-        <a href="{{ project.url | relative_url }}" alt="{{ project.title }}">{{ project.title }}</a>
+{% for project in site.projects %}
+        <div class="project-title">
+            <a href="{{ project.url | relative_url }}" alt="{{ project.title }}">{{ project.title }}</a>
         </div>
-{% endfor %}
     
-    </div>
+{% endfor %}
+        </div>
