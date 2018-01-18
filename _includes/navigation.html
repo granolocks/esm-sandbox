@@ -2,7 +2,9 @@
 
      {% assign default_paths = site.pages | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
+      <div class="logo">
      <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+     </div>
 
     {% if page_paths %}
 
@@ -11,8 +13,8 @@
             {% if my_page.title %}
  <div class="links">
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
+      </div>
             {% endif %}
-     </div>
           {% endfor %}
         </div>
     {% endif %}
