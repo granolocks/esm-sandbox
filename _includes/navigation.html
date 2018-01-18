@@ -1,6 +1,6 @@
  <div class="navigation">
 
-     {% assign default_paths = site.pages | map: "path" %}
+{% assign default_paths = site.pages | map: "path" %}
     {% assign page_paths = site.header_pages | default: default_paths %}
       <div class="logo">
      <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>

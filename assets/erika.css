@@ -1,3 +1,83 @@
+p, ul, li {
+    display: block;
+    font-size: 14px;
+    line-height: 1.4em;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.project-text {
+    display: inline-block;
+    width: 100%;
+}
+
+.project-text:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.project-description {
+    padding: 30px 0;
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.project-description p {
+    margin-right: 60px;
+}
+
+.project-info {
+    padding: 30px 0;
+    font-size: 14px;
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.project-details {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+.detail {
+    -webkit-margin-after: 20px;
+    -webkit-margin-end: 20px;
+}
+
+.project-collaborators {
+    width: 50%;
+    display: inline-block;
+    float: left;
+}
+
+@media only screen and (max-width: 640px) {
+    .project-description {
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .project-info {
+        width: 100%;
+        display: inline-block;
+    }
+    
+    .project-description p {
+    margin-right: 0px;
+}
+}
+
+
+ul, li {
+    list-style-type: none;
+    -webkit-padding-start: 0px;
+}
+
+
 body {
     font-family: helvetica;
 }
@@ -39,6 +119,7 @@ a:hover {
 
 
 .content {
+    display: block;
     padding: 0 20px;
     margin-top: 20px;
 }

@@ -1,26 +1,53 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Home Page</title>
-    <link rel="stylesheet" href="/assets/esm.css">
-  </head>
+---
+layout: default
+---
 
-{% include navigation.html %}
+<h1>{{ page.title }}</h1>
+
+<div class="project-text">
+    <div class="project-description">
+        <p>{{ page.description }}</p>
+    </div>
     
- <div class="content">
-     
-      <div class="project-info">
-    {% for project in site.projects %}
-        <div class="description">
-        {{ project.description }}
+  <div class="project-info">
+    
+    <div class="project-collaborators">
+        <p>Collaborators:</p>
+        <ul>
+            {% for collaborator in page.collaborators %}
+            <li>
+                {{ collaborator }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="project-details">
+        <div class="detail">
+            <p>Date:</p>
+            <p>{{ page.date | date_to_string }}</p>
         </div>
-    {% endfor %}
+        
+        <div class="detail">
+            <p>Site:</p>
+            <p>{{ page.site }}</p>
         </div>
-     
+        
+        <div class="detail">
+            <p>Location:</p>
+            <p>{{ page.location }}</p>
+        </div>
+        
+        <div class="detail">
+            <p>Duration:</p>
+            <p>{{ page.duration }}</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="project-grid">    
       {{ content }}
  </div>
-    
-    <footer>
- 
-    </footer>
