@@ -1,0 +1,10 @@
+$("document").ready(function(){
+  $(".mydiv").click(function(){
+    if($(".mydiv").css("height")!="50px"){
+      $(".mydiv").slideDown();
+    }
+    else{
+      $(".mydiv").slideUp();
+    }
+  }
+}

@@ -6,7 +6,16 @@ body {
     font-size: 16px;
 }
 
-p, h1, h2, h3, ul, li {
+p {
+    line-height: 1.5em;
+}
+
+p a {
+    color: blue;
+}
+
+
+h1, h2, h3, ul, li {
     display: block;
     line-height: 1.5em;
     list-style-type: none;
@@ -26,7 +35,6 @@ h2 {
 .content {
     margin: 0 30px;
     display: block;
-    background-color: white;
 }
 
 .footer {
@@ -40,7 +48,7 @@ h2 {
 
 .footer-inner {
     max-width: 1200px;
-    padding: 30px;
+    padding: 5px 30px;
     margin: auto;
 }
 

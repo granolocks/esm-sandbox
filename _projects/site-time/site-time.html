@@ -1,0 +1,22 @@
+---
+layout: project
+title: SiteTime
+date: October 6, 2017
+site: Vermont Arts Council
+location: Montpelier, Vermont
+duration: 1.5 hours
+collaborators: [Nancy Winship Milliken, Michael Zebrowski, Holly Chagnon, Mireya Guerra, Sage Horsey, Mia Pinheiro, Lydia Kern, Navah Stein, Renee Greenlee]
+description: SiteTime is an ongoing site-specific series that will evolve over a two year long residency at the Vermont Arts Council. Created in collaboration with Michael Zebrowski and Nancy Winship Milliken, the work will be exhibited at VAC’s outdoor sculpture garden. At the core of the installation is a stack of cordwood sourced from Hardwick, Vermont representative of what a family might burn throughout a single winter for warmth. The cordwood will remain at the site throughout consecutive showings of eight scenes that will include performances, sculpture, multimedia, and other yet to be announced activations. The stack, which will shift and evolve over time due to human and environmental forces, aims to draw connections to the working landscape of Vermont and the interplay between natural growth and utility.
+--- 
+    
+    <div class="wrapper">
+      <div class="grid">
+        {% for image in site.static_files %}
+          {% if image.path contains 'salt' %}
+          <div class="item">
+           <img src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+          </div>
+          {% endif %}
+        {% endfor %}    
+      </div>
+    </div>

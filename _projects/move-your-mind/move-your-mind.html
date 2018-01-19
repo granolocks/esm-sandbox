@@ -1,0 +1,21 @@
+---
+layout: project
+title: Move Your Mind
+date: June 7, 2017
+site: Vermont Railway Salt Shed
+location: Burlington, Vermont
+duration: TBD
+collaborators: [Anna Senft Miller, Eugene Korsunskiy, Generator, King Street Youth Center, Renee Greenlee]
+---
+
+    <div class="wrapper">
+      <div class="grid">
+        {% for image in site.static_files %}
+          {% if image.path contains 'salt' %}
+          <div class="item">
+           <img src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+          </div>
+          {% endif %}
+        {% endfor %}    
+      </div>
+    </div>

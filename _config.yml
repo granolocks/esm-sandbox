@@ -12,6 +12,9 @@ collections:
   projects:
     output: true
 
+kramdown:  
+  parse_block_html: true
+
 defaults:
   - scope:
       path: ""

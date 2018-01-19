@@ -2,54 +2,35 @@
 layout: default
 ---
 
-<div class="text-area">
+        <div id="text-area">
  <div class="project-title">{{ page.title }}</div>
     <div class="project-description">
-        <p>About the Project:</p>
-        
-        <p>{{ page.description }}</p>
+        {% capture my_include %}{% include_relative project-description.md %}{% endcapture %}
+        {{ my_include | markdownify }}
     </div>
     
   <div class="project-info">
-    
+      <div id="project-text" class="collapsed"> 
     <div class="project-collaborators">
-        <p>Collaborators:</p>
-        <ul>
-            {% for collaborator in page.collaborators %}
-            <li>
-                {{ collaborator }}
-            </li>
-            {% endfor %}
-        </ul>
+        {% capture my_include %}{% include_relative project-info.md %}{% endcapture %}
+            {{ my_include | markdownify }} 
     </div>
-    
-    <div class="project-details">
-        <div class="detail">
-            <p>Date:</p>
-            <p>{{ page.date | date_to_string }}</p>
-        </div>
-        
-        <div class="detail">
-            <p>Site:</p>
-            <p>{{ page.site }}</p>
-        </div>
-        
-        <div class="detail">
-            <p>Location:</p>
-            <p>{{ page.location }}</p>
-        </div>
-        
-        <div class="detail">
-            <p>Duration:</p>
-            <p>{{ page.duration }}</p>
-        </div>
-    </div>
+      </div>
+<div class="expand">Read More</div>
+      
       
   </div>
 </div>
 
 
-
 <div class="project-grid">    
       {{ content }}
  </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+   $('.expand').click(function () {
+    $('#project-text').removeClass('collapsed', 'fast')
+     $(this).remove();
+});
+</script>

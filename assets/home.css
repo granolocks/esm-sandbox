@@ -1,0 +1,19 @@
+body {
+    background-image: url('../assets/images/salt/ESM_Salt-7.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.content {
+    background-color: none;
+}
+
+.navigation a {
+    color: white !important;
+}
+
+h2 {
+    color: white;
+    font-size: 2.9em;
+}
