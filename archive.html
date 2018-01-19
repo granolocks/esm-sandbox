@@ -4,11 +4,10 @@ title: Archive
 permalink: /archive/
 ---
 
-        <div class="archive-list">
-{% for project in site.projects %}
+<div class="archive-list">
+    {% for project in site.projects %}
         <div class="project-title">
             <a href="{{ project.url | relative_url }}" alt="{{ project.title }}">{{ project.title }}</a>
         </div>
-    
-{% endfor %}
-        </div>
+    {% endfor %}
+</div>

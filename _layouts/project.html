@@ -5,14 +5,14 @@ layout: default
         <div id="text-area">
  <div class="project-title">{{ page.title }}</div>
     <div class="project-description">
-        {% capture my_include %}{% include_relative project-description.md %}{% endcapture %}
+        {% capture my_include %}{% include_relative _project-description.md %}{% endcapture %}
         {{ my_include | markdownify }}
     </div>
     
   <div class="project-info">
       <div id="project-text" class="collapsed"> 
     <div class="project-collaborators">
-        {% capture my_include %}{% include_relative project-info.md %}{% endcapture %}
+        {% capture my_include %}{% include_relative _project-info.md %}{% endcapture %}
             {{ my_include | markdownify }} 
     </div>
       </div>
