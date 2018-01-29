@@ -32,4 +32,4 @@ Ula Klein, guitar, voice
 
 **Photographers** Maxine Senft Miller, Amira Silverman
 
-***Art & Design** Ellen Voorheis, Solidarity of Unbridled Labour & Jasmine Parsia, Iskra Print Collective
+**Art & Design** Ellen Voorheis, Solidarity of Unbridled Labour & Jasmine Parsia, Iskra Print Collective

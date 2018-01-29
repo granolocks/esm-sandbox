@@ -1,16 +1,22 @@
 ---
 layout: project
 title: Sleeping Babies / Social Sculptures
+order: 5
 ---
 
-    <div class="wrapper">
-      <div class="grid">
-        {% for image in site.static_files %}
-          {% if image.path contains 'sleeping-babies' %}
-          <div class="item">
-           <img src="{{ site.baseurl }}{{ image.path }}" alt="image" />
-          </div>
-          {% endif %}
-        {% endfor %}    
-      </div>
+<div class="gallery">
+    <div id="Collaborators" class="gallery gallery-content filter" style="display:block">  
+        <div class="grid">
+            {% for image in site.static_files %}
+            {% if image.path contains 'sleeping-babies' %}
+        <div class="item">
+            <img src="{{ site.baseurl }}{{ image.path }}" alt="image" />
+        </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>    
+    <div id="All" class="gallery gallery-content filter" style="display:none">
+        <p>Looks like there is nothing here yet, have something to add? <a href="google.com">Click here.</a></p>
     </div>
+</div>

@@ -1,0 +1,93 @@
+/* Universal */
+* {
+  box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-size: 16px;
+    margin: 0px;
+}
+
+img {
+  height: auto;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Typography */
+
+p {
+    line-height: 1.5em;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
+
+.project-title {
+    font-size: 36px;
+}
+
+
+/* Structure */
+
+.content-text {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px
+}
+
+.content-text:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-left {
+    width: 50%;
+    float: left;
+    display: inline-block;
+}
+.col-right {
+    width: 50%;
+    float: right;
+    display: inline-block;
+    text-align: right;
+}
+
+/* Header & Footer */
+
+#navigation {
+    font-size: 20px;
+    background-color: white;
+}
+
+.navigation-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px
+}
+
+#footer {
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    font-size: .8em;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+}
+
+a.page-link:last-child {
+    padding-left: 15px;
+}

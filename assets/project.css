@@ -1,84 +1,122 @@
-#text-area {
-    width: 100%;
+/* Page Structure */
+
+#project-title {
     max-width: 1200px;
-    padding: 30px 0;
     margin: auto;
+    padding: 30px;
 }
 
-#text-area:after {
+#project-title:after {
     content: "";
     display: table;
     clear: both;
 }
 
-.project-text {
+#project-text {
+    max-width: 1200px;
+    margin: auto;
+}
+
+#project-text:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.description {
+    display: inline-block;
+    width: 60%;
+    float: left;
+    vertical-align: top;
+    padding: 30px;
+}
+
+.info {
+    display: inline-block;
+    width: 35%;
+    float: right;
+    padding: 30px;
+}
+
+#info {
     display: inline-block;
 }
 
 .collapsed {
-    max-height: 35vh;
+    height: 40vh;
+    opacity: .25;
     overflow: hidden;
-    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgb(255, 255, 255) 100%);
 }
 
 .expand {
-    cursor: pointer;
+    margin: 30px 0;
     color: blue;
-    padding: 30px 0;
+    cursor: pointer;
+}
+
+/* Grid Filters */
+
+#filters {
+    max-width: 1200px;
+    margin: auto;
+}
+
+#filters:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.label {
     display: inline-block;
+    width: 60%;
+    padding: 30px;
+    float: left;
 }
 
-/* Projects */
-
-.project-title {
-    font-size: 36px;
+.triggers {
+    display: inline-block;
+    width: 35%;
+    padding: 30px;
+    float: right;
 }
 
-.project-grid {
+.trigger.tablink {
+    display: inline-block;
+    padding-right: 15px;
+}
+
+.trigger.tablink.active {
+    color: blue;
+}
+
+
+
+#project-grid {
+    border-top: 1px solid whitesmoke;
     padding: 0 0 30px 0;
 }
 
-/* Project Text */
 
-.project-description {
-    padding: 30px 0;
-    width: 70%;
-    display: inline-block;
-    float: left;
+
+/* Image Gallery */
+
+.gallery {
+    display: block;
+    min-height: 50vh
 }
 
-.project-description p {
-    margin-right: 60px;
+.gallery p {
+    text-align: center;
 }
 
-.project-info {
-    padding: 30px 0;
-    width: 30%;
-    display: inline-block;
-    float: left;
-    opacity: .3;
+.gallery-content {
+    padding: 1.5em;
 }
 
-.project-info:hover {
-    opacity: 1;
-}
 
-.project-details {
-    width: 50%;
-    display: inline-block;
-    float: left;
-}
 
-.detail {
-    -webkit-margin-after: 20px;
-    -webkit-margin-end: 20px;
-}
-
-/* .project-collaborators {
-    width: 50%;
-    display: inline-block;
-    float: left;
-} */
 
 /* Project Grid */
 
@@ -97,12 +135,6 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-}
-
-img {
-  height: auto;
-  max-width: 100%;
-  width: auto;
 }
 
 /* Projects-Mobile */
