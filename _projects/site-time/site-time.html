@@ -1,14 +1,13 @@
 ---
 layout: project
 title: SiteTime
-order: 6
 --- 
-
+    
 <div class="gallery">
     <div id="Collaborators" class="gallery gallery-content filter" style="display:block">  
         <div class="grid">
             {% for image in site.static_files %}
-            {% if image.path contains 'site-time' %}
+            {% if image.path contains 'site' %}
         <div class="item">
             <img src="{{ site.baseurl }}{{ image.path }}" alt="image" />
         </div>
