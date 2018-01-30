@@ -54,6 +54,7 @@ a:hover {
     float: left;
     display: inline-block;
 }
+
 .col-right {
     width: 50%;
     float: right;
@@ -76,10 +77,9 @@ a:hover {
 
 #footer {
     width: 100%;
-    background-color: white;
-    position: fixed;
-    bottom: 0;
+    background-color: whitesmoke;
     font-size: .8em;
+    height: 100px;
 }
 
 .footer-inner {
@@ -88,6 +88,56 @@ a:hover {
     padding: 30px;
 }
 
-a.page-link:last-child {
+a.page-link {
     padding-left: 15px;
 }
+
+/*Form*/
+
+.form {
+    text-align: left;
+    padding: 20px;
+    background: whitesmoke;
+}
+
+.demo-text, .magic-form {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-weight: 300;
+}
+
+.project {
+  display: block;
+  padding: 5px 0;
+}
+
+.form-group {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0px;
+}
+
+.form-label {
+  margin-bottom: 10px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 20px 10px;
+  font-size: 16px;
+}
+
+button {
+  border: 1px solid #333;
+  background-color: #ddd;
+  padding: 15px 30px;
+  margin: 20px 0;
+}
+
+button:hover {
+  opacity: .5;
+}
+
