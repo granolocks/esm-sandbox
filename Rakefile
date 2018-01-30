@@ -26,8 +26,6 @@ task :migrate_data_to_templates do
                      remote_filename.downcase.gsub(/[^0-9a-z\-_]/, '-')[0,10],
           ].join('-') + ".#{extension}"
 
-
-
           #{"Name"=>"Christopher Norris",
           # "Project"=>"Between Land and Water",
           # "Photo"=>
@@ -41,8 +39,10 @@ task :migrate_data_to_templates do
 
           File.write("./#{filename}", remote_file_body)
 
+          # TODO make this an includable thing
           puts "<img src=\"#{ filepath }\" alt=\"#{blob["Name"]}\" />"
         elsif file =~ /Video ID/
+          puts '<iframe src="https://player.vimeo.com/video/'+ blob["VimeoID"] + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
         end
       end
     end
