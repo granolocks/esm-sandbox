@@ -13,7 +13,7 @@ task :migrate_data_to_templates do
   files.each do |file|
     content = JSON.parse(File.read(file))
     sheets = content.keys
-    sheets.each do |sheet|j
+    sheets.each do |sheet|
       content[sheet].each do |blob|
         if file =~ /Photo Upload/
 
