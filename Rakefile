@@ -5,9 +5,11 @@ require 'net/http'
 task default: :migrate_data_to_templates
 
 
+
 DATA_DIR = File.expand_path("../_data/", __FILE__)
 desc "Migrate the JSON files located in the data directory into he appropriate project buckets as templates"
 task :migrate_data_to_templates do 
+  items = {}
   files = ["Photo Upload.json", "Video ID.json"].map{|f| File.join(DATA_DIR, f)}
 
   files.each do |file|
@@ -19,32 +21,47 @@ task :migrate_data_to_templates do
 
           # get the image, put it somewhere
           remote_filename, extension =  blob["Photo"].split('/')[-1].split('.')
+          project_name =  blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-')
           
           filename = [
-                     blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-'), 
+                     project_name, 
                      blob["Name"].downcase.gsub(/[^0-9a-z\-]/, '-'),
                      remote_filename.downcase.gsub(/[^0-9a-z\-_]/, '-')[0,10],
           ].join('-') + ".#{extension}"
 
-          #{"Name"=>"Christopher Norris",
-          # "Project"=>"Between Land and Water",
-          # "Photo"=>
-          #"https://apps.cloudstitch.io/alderstudio/__uploads/photo-upload/1517272079025-photo-rPQ2__ybwzmyu6WSjZEd1qJ_.jpg"}
-          
           # skip if we already have this file synced
+          root_path = "#{File.join('/', '_projects', project_name, 'images')}"
           
-          filepath = filename #TODO find out where to put these
+          img_dir = File.expand_path(('..' + root_path), __FILE__)
 
-          remote_file_body = Net::HTTP.get(URI(blob["Photo"]))
+          unless Dir.exist?(img_dir)
+            puts 'creating ' + img_dir
+           `mkdir -p #{img_dir}`
+          end
 
-          File.write("./#{filename}", remote_file_body)
+          filepath = File.join(img_dir, filename)
+          webpath = File.join(root_path, filename)
+          
+          # remote_file_body = Net::HTTP.get(URI(blob["Photo"]))
+
+          # File.write(filepath, remote_file_body)
 
           # TODO make this an includable thing
-          puts "<img src=\"#{ filepath }\" title=\"#{blob["Name"]}\" alt=\"#{blob["Name"]}\" />"
+          items[project_name] ||= []
+          items[project_name] << "<div class=\"item\"> <img src=\"#{ webpath }\" title=\"#{blob["Name"]}\" alt=\"#{blob["Name"]}\" /></div>"
         elsif file =~ /Video ID/
-          puts '<iframe src="https://player.vimeo.com/video/'+ blob["VimeoID"] + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>'
+          project_name =  blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-')
+          items[project_name] ||= []
+          items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ blob["VimeoID"] + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
         end
       end
     end
   end
+  items.keys.each do |proj|
+    items_list = items[proj].shuffle
+    include_file = "_includes/#{proj}-items.html"
+    puts "writing updated " + include_file
+    File.write(include_file, items_list.join("\n"))
+  end
 end
+
