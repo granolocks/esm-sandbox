@@ -7,14 +7,15 @@ DATA_DIR = File.expand_path("../_data/", __FILE__)
 desc "Migrate the JSON files located in the data directory into he appropriate project buckets as templates"
 task :migrate_data_to_templates do 
   items = {}
-  files = ["Photo Upload.json", "Video ID.json"].map{|f| File.join(DATA_DIR, f)}
+
+  files = %w{ photo-upload.json text-snippets.json vimeo-video.jsona}.map{|f| File.join(DATA_DIR, f)}
 
   files.each do |file|
     content = JSON.parse(File.read(file))
     sheets = content.keys
     sheets.each do |sheet|
       content[sheet].each do |blob|
-        if file =~ /Photo Upload/
+        if file == 'photo-upload.json'
 
           remote_filename, extension =  blob["Photo"].split('/')[-1].split('.')
           project_name =  blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-')
@@ -49,10 +50,14 @@ task :migrate_data_to_templates do
 
           items[project_name] ||= []
           items[project_name] << "<div class=\"item\"> <img src=\"#{ webpath }\" title=\"#{blob["Name"]}\" alt=\"#{blob["Name"]}\" /></div>"
-        elsif file =~ /Video ID/
+        elsif file == 'vimeo-video.json'
           project_name =  blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-')
           items[project_name] ||= []
           items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ blob["VimeoID"] + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
+        elsif file == 'text-snippets.json'
+          project_name =  blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-')
+          items[project_name] ||= []
+          items[project_name] << ('<div class="item"><p>' + blob["Text"] + '</p></div>')
         end
       end
     end
@@ -64,4 +69,3 @@ task :migrate_data_to_templates do
     File.write(include_file, items_list.join("\n"))
   end
 end
-
