@@ -18,6 +18,11 @@ task :migrate_data_to_templates do
   files = %w{ photo-upload.json text-snippets.json vimeo-video.json }.map{|f| File.join(DATA_DIR, f)}
 
   files.each do |file|
+    unless File.exist? file
+      puts "missing #{file}, skipping"
+      next
+    end
+
     content = JSON.parse(File.read(file))
     sheets = content.keys
     sheets.each do |sheet|
