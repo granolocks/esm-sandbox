@@ -1,6 +1,13 @@
 require 'json'
 require 'net/http'
 
+unless require 'sanitize'
+  puts 'missing sanitize gem'
+  puts 'install with "gem install sanitize"'
+  puts 'exiting...'
+  exit 1
+end
+
 task default: :migrate_data_to_templates
 
 DATA_DIR = File.expand_path("../_data/", __FILE__)
@@ -15,7 +22,7 @@ task :migrate_data_to_templates do
     sheets = content.keys
     sheets.each do |sheet|
       content[sheet].each do |blob|
-        project_name =  blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-')
+        project_name =  Sanitize.fragment(blob["Project"]).downcase.gsub(/[^0-9a-z\-]/, '-')
         items[project_name] ||= []
 
         if file == 'photo-upload.json'
@@ -24,7 +31,7 @@ task :migrate_data_to_templates do
           
           filename = [
                      project_name, 
-                     blob["Name"].downcase.gsub(/[^0-9a-z\-]/, '-'),
+                     Sanitize.fragment(blob["Name"]).downcase.gsub(/[^0-9a-z\-]/, '-'),
                      remote_filename.downcase.gsub(/[^0-9a-z\-_]/, '-')[0,10],
           ].join('-') + ".#{extension}"
 
@@ -50,11 +57,11 @@ task :migrate_data_to_templates do
             puts "#{filepath} already exists, skipping"
           end
 
-          items[project_name] << "<div class=\"item\"> <img src=\"#{ webpath }\" title=\"#{blob["Name"]}\" alt=\"#{blob["Name"]}\" /></div>"
+          items[project_name] << "<div class=\"item\"> <img src=\"#{ webpath }\" title=\"#{Sanitize.fragment(blob["Name"])}\" alt=\"#{Sanitize.fragment(blob["Name"])}\" /></div>"
         elsif file == 'vimeo-video.json'
-          items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ blob["VimeoID"] + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
+          items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ Sanitize.fragment(blob["VimeoID"]) + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
         elsif file == 'text-snippets.json'
-          items[project_name] << ('<div class="item"><p>' + blob["Text"] + '</p></div>')
+          items[project_name] << ('<div class="item"><p>' + Sanitize.fragment(blob["Text"]) + '</p></div>')
         end
       end
     end
