@@ -16,7 +16,6 @@ task :migrate_data_to_templates do
       content[sheet].each do |blob|
         if file =~ /Photo Upload/
 
-          # get the image, put it somewhere
           remote_filename, extension =  blob["Photo"].split('/')[-1].split('.')
           project_name =  blob["Project"].downcase.gsub(/[^0-9a-z\-]/, '-')
           
@@ -26,7 +25,6 @@ task :migrate_data_to_templates do
                      remote_filename.downcase.gsub(/[^0-9a-z\-_]/, '-')[0,10],
           ].join('-') + ".#{extension}"
 
-          # skip if we already have this file synced
           root_path = "#{File.join('/', '_projects', project_name, 'images')}"
           
           img_dir = File.expand_path(('..' + root_path), __FILE__)
@@ -49,7 +47,6 @@ task :migrate_data_to_templates do
             puts "#{filepath} already exists, skipping"
           end
 
-          # TODO make this an includable thing
           items[project_name] ||= []
           items[project_name] << "<div class=\"item\"> <img src=\"#{ webpath }\" title=\"#{blob["Name"]}\" alt=\"#{blob["Name"]}\" /></div>"
         elsif file =~ /Video ID/
