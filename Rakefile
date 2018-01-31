@@ -42,9 +42,11 @@ task :migrate_data_to_templates do
           filepath = File.join(img_dir, filename)
           webpath = File.join(root_path, filename)
           
-          # remote_file_body = Net::HTTP.get(URI(blob["Photo"]))
-
-          # File.write(filepath, remote_file_body)
+          puts "downloading " + blob["Photo"]
+          remote_file_body = Net::HTTP.get(URI(blob["Photo"]))
+          
+          puts "creating " + filepath
+          File.write(filepath, remote_file_body)
 
           # TODO make this an includable thing
           items[project_name] ||= []
