@@ -1,10 +1,7 @@
-require 'pry'
 require 'json'
 require 'net/http'
 
 task default: :migrate_data_to_templates
-
-
 
 DATA_DIR = File.expand_path("../_data/", __FILE__)
 desc "Migrate the JSON files located in the data directory into he appropriate project buckets as templates"
@@ -42,11 +39,15 @@ task :migrate_data_to_templates do
           filepath = File.join(img_dir, filename)
           webpath = File.join(root_path, filename)
           
-          puts "downloading " + blob["Photo"]
-          remote_file_body = Net::HTTP.get(URI(blob["Photo"]))
-          
-          puts "creating " + filepath
-          File.write(filepath, remote_file_body)
+          unless File.exist? filepath
+            puts "downloading " + blob["Photo"]
+            remote_file_body = Net::HTTP.get(URI(blob["Photo"]))
+
+            puts "creating " + filepath
+            File.write(filepath, remote_file_body)
+          else
+            puts "#{filepath} already exists, skipping"
+          end
 
           # TODO make this an includable thing
           items[project_name] ||= []
