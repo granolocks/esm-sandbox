@@ -15,7 +15,7 @@ desc "Migrate the JSON files located in the data directory into he appropriate p
 task :migrate_data_to_templates do 
   items = {}
 
-  files = %w{ photo-upload.json text-snippets.json vimeo-video.json }.map{|f| File.join(DATA_DIR, f)}
+  files = %w{ esm-photo.json esm-text.json esm-video.json }.map{|f| File.join(DATA_DIR, f)}
 
   files.each do |file|
     unless File.exist? file
@@ -30,7 +30,9 @@ task :migrate_data_to_templates do
         project_name =  Sanitize.fragment(blob["Project"]).downcase.gsub(/[^0-9a-z\-]/, '-')
         items[project_name] ||= []
 
-        if file == 'photo-upload.json'
+        if file == 'esm-photo.json'
+
+          next unless blob["Photo"] && blob["Name"]  && blob["Project"]
 
           remote_filename, extension =  blob["Photo"].split('/')[-1].split('.')
           
@@ -63,15 +65,20 @@ task :migrate_data_to_templates do
           end
 
           items[project_name] << "<div class=\"item\"> <img src=\"#{ webpath }\" title=\"#{Sanitize.fragment(blob["Name"])}\" alt=\"#{Sanitize.fragment(blob["Name"])}\" /></div>"
-        elsif file == 'vimeo-video.json'
+        elsif file == 'esm-video.json'
           # only allow digit ids
           unless blob["VimeoID"] =~ /^\d+$/
             puts "Invalid video ID!: "
             puts "  skippping #{blob.inspect}"
             next
           end
+
+          next unless blob["VimeoID"] && blob["Name"]  && blob["Project"]
+
           items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ Sanitize.fragment(blob["VimeoID"]) + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
-        elsif file == 'text-snippets.json'
+        elsif file == 'esm-text.json'
+          next unless blob["Text"] && blob["Name"]  && blob["Project"]
+          # TODO (do we want to credit commentors)
           items[project_name] << ('<div class="item"><p>' + Sanitize.fragment(blob["Text"]) + '</p></div>')
         end
       end
