@@ -32,7 +32,11 @@ task :migrate_data_to_templates do
 
         if file =~ /esm-photo.json/
 
-          next unless blob["Photo"] && blob["Name"]  && blob["Project"]
+           unless blob["Photo"] && blob["Name"]  && blob["Project"]
+            puts "Invalid Photo submission!: "
+            puts "  skippping #{blob.inspect}"
+            next 
+           end
 
           remote_filename, extension =  blob["Photo"].split('/')[-1].split('.')
           
@@ -73,11 +77,19 @@ task :migrate_data_to_templates do
             next
           end
 
-          next unless blob["VideoID"] && blob["Name"]  && blob["Project"]
+          unless blob["VideoID"] && blob["Name"]  && blob["Project"]
+            puts "Invalid video submission!: "
+            puts "  skippping #{blob.inspect}"
+            next 
+          end
 
           items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ Sanitize.fragment(blob["VideoID"]) + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
         elsif file =~ /esm-text.json/
-          next unless blob["Text"] && blob["Name"]  && blob["Project"]
+          unless blob["Text"] && blob["Name"]  && blob["Project"]
+            puts "Invalid text submission!: "
+            puts "  skippping #{blob.inspect}"
+            next 
+          end
           # TODO (do we want to credit commentors)
           items[project_name] << ('<div class="item"><p>' + Sanitize.fragment(blob["Text"]) + '</p></div>')
         end
