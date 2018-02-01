@@ -30,7 +30,7 @@ task :migrate_data_to_templates do
         project_name =  Sanitize.fragment(blob["Project"]).downcase.gsub(/[^0-9a-z\-]/, '-')
         items[project_name] ||= []
 
-        if file == 'esm-photo.json'
+        if file =~ /esm-photo.json/
 
           next unless blob["Photo"] && blob["Name"]  && blob["Project"]
 
@@ -65,18 +65,18 @@ task :migrate_data_to_templates do
           end
 
           items[project_name] << "<div class=\"item\"> <img src=\"#{ webpath }\" title=\"#{Sanitize.fragment(blob["Name"])}\" alt=\"#{Sanitize.fragment(blob["Name"])}\" /></div>"
-        elsif file == 'esm-video.json'
+        elsif file =~ /esm-video.json/
           # only allow digit ids
-          unless blob["VimeoID"] =~ /^\d+$/
+          unless blob["VideoID"] =~ /^\d+$/
             puts "Invalid video ID!: "
             puts "  skippping #{blob.inspect}"
             next
           end
 
-          next unless blob["VimeoID"] && blob["Name"]  && blob["Project"]
+          next unless blob["VideoID"] && blob["Name"]  && blob["Project"]
 
-          items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ Sanitize.fragment(blob["VimeoID"]) + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
-        elsif file == 'esm-text.json'
+          items[project_name] << ('<div class="item"><iframe src="https://player.vimeo.com/video/'+ Sanitize.fragment(blob["VideoID"]) + '" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
+        elsif file =~ /esm-text.json/
           next unless blob["Text"] && blob["Name"]  && blob["Project"]
           # TODO (do we want to credit commentors)
           items[project_name] << ('<div class="item"><p>' + Sanitize.fragment(blob["Text"]) + '</p></div>')
@@ -84,7 +84,7 @@ task :migrate_data_to_templates do
       end
     end
   end
-  items.keys.each do |proj|
+  items.keys.select{|x| x != ""}.each do |proj|
     items_list = items[proj].shuffle
     include_file = "_includes/#{proj}-items.html"
     puts "writing updated " + include_file
